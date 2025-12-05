@@ -1,0 +1,23 @@
+2025-12-02T10:18:34+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+2025-12-02T10:20:36+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+2025-12-02T10:20:40+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+2025-12-02T10:20:43+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+2025-12-02T10:21:33+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+2025-12-02T10:22:10+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1049] Unknown database 'flight_db'
+2025-12-02T10:22:11+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1049] Unknown database 'flight_db'
+2025-12-02T10:22:11+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1049] Unknown database 'flight_db'
+2025-12-02T10:22:11+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1049] Unknown database 'flight_db'
+2025-12-02T10:22:13+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1049] Unknown database 'flight_db'
+2025-12-02T10:22:16+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1049] Unknown database 'flight_db'
+2025-12-02T10:23:14+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:23:19+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:03+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:29+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:30+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:30+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:30+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:30+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:30+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:27:42+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for  127.0.0.1 failed: No such host is known. 
+2025-12-02T10:31:13+01:00 [DB CONNECTION ERROR] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+2025-12-02T10:39:41+01:00 [LOI KET NOI DB] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
