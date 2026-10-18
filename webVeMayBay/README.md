@@ -1,110 +1,52 @@
-# Web Vé Máy Bay — PHP + MySQL (XAMPP)
+# Web Vé Máy Bay
 
-Dự án web đặt vé máy bay đơn giản, dùng PHP thuần (PDO) và MySQL/MariaDB, chạy trên XAMPP. Phù hợp cho mục đích học tập và minh họa các thực hành an toàn cơ bản trong ứng dụng PHP.
+Website đặt vé máy bay cho mục đích học tập, sử dụng **PHP thuần, PDO và MySQL/MariaDB**. Giao diện và xử lý phía server nằm trong cùng ứng dụng; không cần Composer hoặc bước build frontend.
 
-## Tính năng chính
+## Chức năng
 
-- Tìm kiếm chuyến bay theo điểm đi/đến và ngày bay.
-- Đặt vé với kiểm tra số ghế còn lại, hoàn trả ghế khi hủy.
-- Quản lý đặt chỗ của người dùng (xem, hủy).
-- Khu vực Admin: quản lý chuyến bay, người dùng, và đặt chỗ.
-- Phiên thanh toán giả lập, có sẵn điểm tích hợp cổng thanh toán thực.
-- Ghi log lỗi cơ bản, bảo vệ chống XSS/SQLi, quản lý session an toàn.
+- Đăng ký, đăng nhập và quản lý phiên người dùng.
+- Tìm chuyến bay theo nơi đi, nơi đến và ngày bay.
+- Đặt vé, kiểm tra ghế còn lại, xem và hủy đặt chỗ.
+- Thanh toán **giả lập** để xác nhận booking.
+- Khu vực admin quản lý chuyến bay, người dùng và đặt chỗ.
 
-## Yêu cầu hệ thống
+Các thao tác đặt/hủy vé có transaction và khóa bản ghi ở những đoạn xử lý tương ứng. Dự án không kết nối hệ thống hãng bay hay cổng thanh toán tiền thật.
 
-- XAMPP (Apache + MySQL/MariaDB)
-- PHP 8.x
-- Windows (đã thử trên Windows; các hệ khác tương tự)
+## Chạy với XAMPP trên Windows
 
-## Cấu trúc thư mục
+Cần Apache, PHP 8.x có `pdo_mysql`, và MySQL/MariaDB.
 
-```
-webVeMayBay/
-├── index.php
-├── login.php
-├── logout.php
-├── register.php
-├── search.php
-├── book.php
-├── payment.php
-├── manage_booking.php
-├── admin/
-│   ├── index.php
-│   ├── flights.php
-│   ├── bookings.php
-│   ├── users.php
-│   └── sidebar.php
-├── includes/
-│   ├── header.php
-│   ├── footer.php
-│   └── functions.php
-├── assets/
-│   ├── css/style.css
-│   └── js/main.js
-├── sql/seed.sql
-├── logs/
-│   └── (log file sẽ được tạo khi chạy)
-├── db.php
-└── README.md
+```powershell
+git clone https://github.com/cong0905/d-n-1.git C:/xampp/htdocs/d-n-1
 ```
 
-## Cài đặt nhanh (XAMPP trên Windows)
+Sau khi clone, các đường dẫn bên dưới tính từ thư mục `webVeMayBay/` bên trong repository.
 
-1) Sao chép mã nguồn vào `c:\xampp\htdocs\webVeMayBay`.
+1. Bật **Apache** và **MySQL** trong XAMPP.
+**Chỉ import seed trên database demo mới:** script có `DROP DATABASE IF EXISTS flight_db`, sẽ xóa database cùng tên. Sao lưu dữ liệu đang có trước khi sử dụng.
 
-2) Tạo cơ sở dữ liệu và dữ liệu mẫu:
-- Mở phpMyAdmin (`http://localhost/phpmyadmin`).
-- Tạo database trùng tên với file `sql/seed.sql` (mặc định: `flight_db`).
-- Import `sql/seed.sql`.
+2. Import `sql/seed.sql` bằng phpMyAdmin; script tạo database `flight_db` và dữ liệu mẫu.
+3. Sửa `db.php`: `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS` theo máy đang chạy. **Mã nguồn hiện đặt `DB_PORT=3307`**; đổi thành `3306` nếu MySQL của bạn dùng cổng mặc định.
+4. Mở `http://localhost/d-n-1/webVeMayBay/`.
 
-3) Cấu hình kết nối DB trong `db.php` (nếu cần):
-- `DB_HOST` = `localhost`
-- `DB_NAME` = `flight_db`
-- `DB_USER` = `root`
-- `DB_PASS` = `''` (mặc định XAMPP)
+## Cấu trúc
 
-4) Khởi động Apache và MySQL bằng XAMPP Control Panel.
+| Đường dẫn | Nội dung |
+| --- | --- |
+| `index.php`, `search.php` | Tra cứu chuyến bay |
+| `book.php`, `payment.php` | Đặt chỗ và xác nhận thanh toán giả lập |
+| `manage_booking.php` | Booking của người dùng |
+| `admin/` | Giao diện quản trị |
+| `includes/`, `assets/` | Thành phần dùng chung, CSS và JavaScript |
+| `sql/seed.sql` | Schema và dữ liệu mẫu |
+| `db.php` | Kết nối PDO |
 
-5) Truy cập: `http://localhost/webVeMayBay/`
+## Kiểm tra sau cài đặt
 
-## Tài khoản mẫu
+Đăng ký tài khoản → đăng nhập → tìm chuyến bay có trong seed → đặt vé → xác nhận thanh toán giả lập → xem/hủy booking. Kiểm tra cả trạng thái booking và số ghế còn lại trong database.
 
-- User: `user@gmail.com` / `Test1234`
-- Admin: `admin@gmail.com` / `Admin1234`
+Nếu báo lỗi kết nối, đối chiếu cổng MySQL và thông tin trong `db.php`; lỗi được ghi trong `logs/app.log`. Không công khai log hoặc thông tin kết nối thật.
 
-Ghi chú: Mật khẩu seed ban đầu có thể là plaintext để thử nhanh. Ứng dụng sẽ chuyển sang bcrypt ở lần đăng nhập đầu (cơ chế nâng cấp tự động).
+**Trạng thái:** bài thực hành PHP/MySQL; cần rà soát bảo mật, dữ liệu và tích hợp trước khi đưa vào sử dụng thực tế.
 
-## Cách sử dụng nhanh
-
-- Đăng ký hoặc dùng tài khoản mẫu để đăng nhập.
-- Tìm chuyến tại `index.php` → xem kết quả ở `search.php`.
-- Chọn chuyến phù hợp → đặt vé tại `book.php`.
-- Thanh toán giả lập ở `payment.php` → đặt chỗ chuyển `confirmed`.
-- Quản lý đặt chỗ tại `manage_booking.php` (có thể hủy, ghế được hoàn lại).
-- Admin vào `admin/` để thêm/sửa/xóa chuyến bay, xem người dùng/đặt chỗ.
-
-## Bảo mật đã áp dụng
-
-- Prepared statements (PDO) cho mọi truy vấn.
-- Băm mật khẩu bằng `password_hash(..., PASSWORD_BCRYPT)`.
-- Escape output bằng helper `escape()` để giảm XSS.
-- `session_regenerate_id(true)` khi đăng nhập để tránh session fixation.
-- Transaction + `SELECT ... FOR UPDATE` khi trừ ghế/ghi đặt chỗ, giảm race condition.
-- Validate input server-side cho các form quan trọng.
-- Ghi log lỗi trong `logs/`. Ở production cần bật HTTPS, secure cookies, CSP/HSTS, ẩn thông tin lỗi.
-
-## Tích hợp thanh toán thực (gợi ý)
-
-- Tại `payment.php` có vị trí tích hợp PayPal/Stripe.
-- Các bước mẫu: thêm SDK, tạo payment intent, xác nhận qua webhook, ghi `payments`, cập nhật `bookings.status = 'confirmed'`.
-
-## Khắc phục sự cố
-
-- Không ghi log: đảm bảo Apache có quyền ghi vào `logs/`.
-- Lỗi kết nối DB: kiểm tra `db.php`, thông tin `DB_NAME`, và đã import `sql/seed.sql`.
-- Trùng timezone: có thể set `date_default_timezone_set('Asia/Ho_Chi_Minh');` trong `includes/header.php`.
-
-## Giấy phép
-
-Mã nguồn dùng cho mục đích học tập. Không kèm giấy phép thương mại. Vui lòng không sử dụng dữ liệu/mật khẩu mẫu cho môi trường thật.
+**Tác giả:** [Nguyễn Đức Công](https://github.com/cong0905).
